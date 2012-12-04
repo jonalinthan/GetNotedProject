@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByNetVotes", query = "SELECT u FROM User u WHERE u.netVotes = :netVotes"),
     @NamedQuery(name = "User.findByUserType", query = "SELECT u FROM User u WHERE u.userType = :userType")})
 public class User implements Serializable {
+    @EmbeddedId
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -213,5 +214,4 @@ public class User implements Serializable {
     public String toString() {
         return "entities.User[ userID=" + userID + " ]";
     }
-    
 }

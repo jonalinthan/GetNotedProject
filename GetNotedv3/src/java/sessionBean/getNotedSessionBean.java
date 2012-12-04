@@ -29,17 +29,21 @@ public class getNotedSessionBean {
     // "Insert Code > Add Business Method")
     
     public User checkUser(String username, String password) {
-        User user = (User) emf.createEntityManager().find(User.class, username);
-        if (user != null) {
+        String query = "SELECT userID FROM User WHERE username='" + username + "'";
+        List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
+            if (temp.size() <= 0)
+                return null;
+        User user = (User) emf.createEntityManager().find(User.class, temp.get(0));
+        if (user != null) { 
             if (user.getPassword().equals(password)) {
-                user = (User) emf.createEntityManager().find(User.class, username);
                 return user;
             }
-            else
+            else {
                 return null;
+            }
         }
-        else
+        else {
             return null;
+        }
     }
-    
 }

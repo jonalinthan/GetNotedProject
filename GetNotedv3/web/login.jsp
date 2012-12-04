@@ -18,9 +18,9 @@
             <fieldset>
                 <legend>Login</legend>
                     <label for="username">Username:</label>
-                    <input type="text" name="username" value=""><br />
+                    <input name="username" /><br />
                     <label for="password">Password:</label>
-                    <input type="text" name="password" value=""><br />
+                    <input type="password" name="password" /><br />
                     <input type="submit" value="Login" />
             </fieldset>
         </form>
