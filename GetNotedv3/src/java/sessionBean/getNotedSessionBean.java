@@ -71,6 +71,109 @@ public class getNotedSessionBean {
                 GeneralizedQueries.insert("professor",pa, pv);
             }
         } 
+     
+     public School[] generateSchoolArray() {
+         /*String query = "SELECT * FROM School ORDER BY nameOfSchool ASC";
+         List<School> schoolList = emf.createEntityManager().createNativeQuery(query).getResultList();
+         School[] temp = new School[schoolList.size()];
+         for (int i = 0; i < temp.length; i++) {
+             temp[i] = schoolList.get(i);
+         }
+         return temp;
+         
+         TypedQuery<School> query;
+         List<School> searchResults = null;;
+         //searchResults = emf.createEntityManager().createNativeQuery("SELECT * FROM school s ORDER BY s.nameOfSchool ASC").getResultList();
+         
+         query = emf.createEntityManager().createQuery("SELECT * FROM School ORDER BY nameOfSchool ASC", School.class);
+         searchResults = query.getResultList();
+         
+         //System.out.println(searchResults.size());
+         
+         return searchResults.toArray(new School[searchResults.size()]);*/
+         List<School> searchResults = new ArrayList();
+         List<String> temp = null;
+         
+         temp = emf.createEntityManager().createNativeQuery("SELECT s.schoolID FROM school s ORDER BY s.nameOfSchool ASC").getResultList();
+         for (String i : temp) {
+             searchResults.add(getSchool(i));
+         }
+         
+         return searchResults.toArray(new School[searchResults.size()]);
+     }
+     
+     /*
+     public School[] generateSchoolIDArray() {
+         String query = "SELECT * FROM School ORDER BY nameOfSchool ASC";
+         List<School> schoolList = emf.createEntityManager().createNativeQuery(query).getResultList();
+         School[] temp = new School[schoolList.size()];
+         for (int i = 0; i < temp.length; i++) {
+             temp[i] = schoolList.get(i);
+         }
+         return temp;
+         
+         List<School> searchResults = new ArrayList();
+         String[] schoolIDs;
+         
+         searchResults = emf.createEntityManager().createNativeQuery("SELECT * FROM school s ORDER BY s.nameOfSchool ASC").getResultList();
+         schoolIDs = new String[searchResults.size()];
+         
+         for (int i = 0; i < schoolIDs.length; i++) {
+             schoolIDs[i] = (String) searchResults.get(i).getSchoolID();
+         }
+         
+         return (Sc);
+     }
+     */
+     
+     public Department[] generateDepartmentArray() {
+         /*String query = "SELECT * FROM Department ORDER BY departmentName ASC";
+         List<Department> departmentList = emf.createEntityManager().createNativeQuery(query).getResultList();
+         Department[] temp = new Department[departmentList.size()];
+         for (int i = 0; i < temp.length; i++) {
+             temp[i] = departmentList.get(i);
+         }
+         return temp;
+         
+         List<Department> searchResults = new ArrayList();
+         searchResults = emf.createEntityManager().createNativeQuery("SELECT * FROM department d ORDER BY d.departmentName ASC").getResultList();
+         return (Department[]) searchResults.toArray(new Department[searchResults.size()]);*/
+         
+         List<Department> searchResults = new ArrayList();
+         List<String> temp = null;
+         
+         temp = emf.createEntityManager().createNativeQuery("SELECT d.departmentID FROM department d ORDER BY d.departmentName ASC").getResultList();
+         for (String i : temp) {
+             searchResults.add(getDepartment(i));
+         }
+         
+         return searchResults.toArray(new Department[searchResults.size()]);
+     }
+     
+     /*
+     public String[] generateDepartmentIDArray() {
+         String query = "SELECT * FROM Department ORDER BY departmentName ASC";
+         List<Department> departmentList = emf.createEntityManager().createNativeQuery(query).getResultList();
+         Department[] temp = new Department[departmentList.size()];
+         for (int i = 0; i < temp.length; i++) {
+             temp[i] = departmentList.get(i);
+         }
+         return temp;
+         
+         List<Department> searchResults = new ArrayList();
+         String[] departmentIDs;
+         
+         searchResults = emf.createEntityManager().createNativeQuery("SELECT * FROM department d ORDER BY d.departmentName ASC").getResultList();
+         departmentIDs = new String[searchResults.size()];
+         
+         for (int i = 0; i < departmentIDs.length; i++) {
+             departmentIDs[i] = (String) searchResults.get(i).getDepartmentID();
+         }
+         
+         return departmentIDs;
+     }
+     */
+     
      public void updateSettings(Object object){
          
          emf.createEntityManager().merge(object);

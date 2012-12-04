@@ -9,11 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>GetNoted - Revolutionizing Note Sharing, One Note at a Time</title>
+        <title>GetNoted - Revolutionizing Sharing, One Note at a Time</title>
     </head>
     <body>
         <h1>Welcome!</h1>
         <a href="login.jsp">Login</a>
-        <a href="register.jsp">Register</a>
+        <a href="GenerateSchoolAndMajorServlet">Register</a>
     </body>
 </html>

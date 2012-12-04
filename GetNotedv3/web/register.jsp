@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,8 +30,8 @@
                     <input type="text" name="lastName" value=""><br />
                     <label for="school">School:</label>
                     <select name="school">
-                        <c:forEach>
-                            <!-- SCHOOL: Must be populated from Database in Alphabetical Order-->
+                        <c:forEach items="${schools}" var="school">
+                            <option value="${school.schoolID}">${school.nameOfSchool}</option>
                         </c:forEach>
                     </select><br />
                     <label for="email">E-Mail:</label>
@@ -48,9 +49,9 @@
                     <div class="student">
                         <label for="major">Major:</label>
                         <select name="major">
-                            <c:forEach>
-                            <!-- MAJOR: Must be populated from Database in Alphabetical Order-->
-                        </c:forEach>
+                            <c:forEach items="${majors}" var="department">
+                                <option value="${department.departmentID}">${department.departmentName}</option>
+                            </c:forEach>
                         </select><br />
                         <label for="yearOfGraduation">Year of Graduation:</label>
                         <select name="yearOfGraduation">
@@ -163,9 +164,9 @@
                     <div class="professor">
                         <label for="department">Department:</label>
                         <select name="department">
-                            <c:forEach>
-                            <!-- DEPARTMENT: Must be populated from Database in Alphabetical Order-->
-                        </c:forEach>
+                            <c:forEach items="${majors}" var="department">
+                                <option value="${department.departmentID}">${department.departmentName}</option>
+                            </c:forEach>
                         </select>
                         <br /><br />
                         <input type="submit" value="Submit" /><br />
