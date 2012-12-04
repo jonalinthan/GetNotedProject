@@ -4,10 +4,9 @@
  */
 package servlets;
 
-import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
+import java.util.List;
 import java.util.Vector;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -21,7 +20,7 @@ import sessionBean.getNotedSessionBean;
  *
  * @author aaronmeltzer
  */
-public class GetBuddies extends HttpServlet {
+public class ListNotesServlet extends HttpServlet {
     @EJB getNotedSessionBean getNotedBean;
 
     /**
@@ -40,11 +39,11 @@ public class GetBuddies extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            User us = (User)request.getSession().getAttribute("user");
-            Vector<String>rs = getNotedBean.getUsersBuddies(us.getUsername());
-            request.getSession().setAttribute("buddyList", rs);
-            RequestDispatcher rd = request.getRequestDispatcher("listBuddies.jsp");
+            List<String> courses = getNotedBean.getProfCourses(request.getParameter("profName"));
+            request.getSession().setAttribute("profCourses", courses);
+            RequestDispatcher rd = request.getRequestDispatcher("listNotes.jsp");
             rd.forward(request, response);
+
         } finally {            
             out.close();
         }
