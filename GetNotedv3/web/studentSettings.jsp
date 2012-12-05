@@ -9,15 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>${user.firstName}</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Student Settings Page!</h1>
          <form name="settings" action="" method="post">
             <fieldset>
                 <legend>Change Student Info</legend>
                     <label for="username">Username:</label>
-                    <input type="text" name="username" value=""><br />
+                    ${user.username }
+                    <br/>
                     <label for="password">Password:</label>
                     <input type="text" name="password" value=""><br />
                     <label for="firstName">First Name:</label>

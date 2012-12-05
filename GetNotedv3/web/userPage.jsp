@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>User Page</title>
     </head>
     <body>
         <input type="password" name="buddies">
-        <a href="GetBuddiesServlet">hurdur</a>
+        <a href="GetBuddiesServlet">user page</a>
     </body>
 </html>
