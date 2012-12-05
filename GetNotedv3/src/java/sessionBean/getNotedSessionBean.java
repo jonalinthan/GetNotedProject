@@ -273,4 +273,20 @@ public class getNotedSessionBean {
 		List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
 		return temp;
 	}
+	public List<Note> sort(String username){
+        String query2 = "SELECT userID FROM user WHERE userID="+username;
+		
+        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID="+query2+"ORDER BY N.netVote DESC";
+        List<Note> result= emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
+    public List<Note> sortId(String username){
+        String query2 = "SELECT userID FROM user WHERE userID="+username;
+		
+        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID="+query2+"ORDER BY N.user DESC";
+        List<Note> result= emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
+	
+	
 }
