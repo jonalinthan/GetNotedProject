@@ -358,4 +358,29 @@ public class getNotedSessionBean {
         List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
         return result;
     }
+	public List<Note> userQuery(String keyword, String criteria){
+        String query = "";
+        String searchable="";
+        if(criteria.equals("user")){
+            query = "SELECT userID FROM user WHERE userID= '"+keyword+"'";
+            searchable= (String)emf.createEntityManager().createNativeQuery(query).getSingleResult();
+        }
+        else{
+            searchable = keyword;
+        }
+		List<Note> results=(List<Note>)searchNote(searchable, criteria);
+		return results;
+    }
+	
+    private List<Note> searchNote(String keyword, String criteria){
+		String query="";
+		if(criteria.equals("user")){
+			query = "SELECT * FROM note WHERE user='"+keyword+"'";
+		}
+		else{
+			query = "SELECT * FROM note WHERE nameOfNote='"+keyword+"'";
+		}
+		List<Note> searchable = (List<Note>)emf.createEntityManager().createNativeQuery(query).getResultList();
+		return searchable;
+    }
 }
