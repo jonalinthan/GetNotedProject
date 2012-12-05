@@ -255,4 +255,21 @@ public class getNotedSessionBean {
          }
          return null;
      }
+	public Vector<String> getUsersBuddies(String username){
+		String query = "SELECT userID FROM Buddies WHERE friendsWith='" + username + "'";
+		List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
+		Vector<String> ntemp = new Vector<String>();
+		for(int i=0; i<temp.size(); i++){
+            String query2= "SELECT username FROM user WHERE userID='" + temp.get(i) +"'";
+            ntemp.add((String)emf.createEntityManager().createNativeQuery(query2).getSingleResult());
+		}
+		return ntemp;
+		
+	}
+	public List<String> getProfCourses(String profName){
+		Vector<String> vs = new Vector<String>();
+		String query = "SELECT c.courseName FROM course c WHERE c.professor = '"+profName+"'";
+		List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
+		return temp;
+	}
 }
