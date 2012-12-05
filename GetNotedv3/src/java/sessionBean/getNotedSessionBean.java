@@ -383,4 +383,32 @@ public class getNotedSessionBean {
 		List<Note> searchable = (List<Note>)emf.createEntityManager().createNativeQuery(query).getResultList();
 		return searchable;
     }
+	public ArrayList<Object> departmentAverages() throws SQLException{
+        ConnectionManager cm = ConnectionManager.getManager();
+        Connection con= cm.getConnection();
+        Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE,
+											 ResultSet.CONCUR_UPDATABLE);   
+        String query = "SELECT D.departmentName, AVG(T.averageScore) FROM department D, test T, professor P WHERE P.department = D.departmentID AND T.testOwner=P.professorID GROUP BY department DESC";
+        ResultSet result =stmt.executeQuery(query);
+        ArrayList<Object> list = new ArrayList<Object>();
+        int i=0;
+        for(i=0; i<list.size(); i++){
+            list.add(result.getArray(i));
+        }
+        return list;
+    }
+    public List<Object> avgNotes() throws SQLException{
+        ConnectionManager cm = ConnectionManager.getManager();
+        Connection con= cm.getConnection();
+        Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE,
+											 ResultSet.CONCUR_UPDATABLE);   
+        String query="SELECT CourseCode, AVG(A.Average) FROM AvgNotes A GROUP BY(CourseCode)";
+        ResultSet result =stmt.executeQuery(query);
+        ArrayList<Object> list = new ArrayList<Object>();
+        int i=0;
+        for(i=0; i<list.size(); i++){
+            list.add(result.getArray(i));
+        }
+        return list;
+    }
 }
