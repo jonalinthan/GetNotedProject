@@ -9,18 +9,20 @@ import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sessionBean.getNotedSessionBean;
 
 /**
  *
  * @author aaronmeltzer
  */
 public class sortNoteId extends HttpServlet {
-
+     @EJB getNotedSessionBean getNotedBean;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
