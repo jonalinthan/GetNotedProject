@@ -11,10 +11,10 @@
     <head>
         <script src="jquery/jquery.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>QB Results</title>
     </head>
     <body>
-        <h1>Question Bank Search!</h1>
+        <h1>Question Bank Search Results</h1>
         <form method="post" name="login" action="login" >
             <fieldset>
                 <legend>QB Search</legend>

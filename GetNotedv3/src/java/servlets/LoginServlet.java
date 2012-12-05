@@ -60,11 +60,11 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
                 request.getSession().setAttribute("user", user);
                 if (user.getUserType().equals("student")) {
-                    RequestDispatcher rd = request.getRequestDispatcher("studentSettings.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("studentPage.jsp");
                     rd.forward(request, response);
                 }
                 else if (user.getUserType().equals("professor")) {
-                    RequestDispatcher rd = request.getRequestDispatcher("professorSettings.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("professorPage.jsp");
                     rd.forward(request, response);
                 }
                 else {

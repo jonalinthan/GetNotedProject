@@ -9,15 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Professor</title>
+        <title>Professor ${user.lastName}</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Welcome Professor ${user.lastName}!</h1>
         <form name="settingsProf" action="" method="post">
             <fieldset>
                 <legend>Change Student Info</legend>
                     <label for="username">Username:</label>
-                    <input type="text" name="username" value=""><br />
+                    ${user.username}
+                    <br/>
                     <label for="password">Password:</label>
                     <input type="text" name="password" value=""><br />
                     <label for="firstName">First Name:</label>

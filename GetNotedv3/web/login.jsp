@@ -10,10 +10,10 @@
     <head>
         <script src="jquery/jquery.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Login Page</h1>
         <form method="post" name="login" action="login" >
             <fieldset>
                 <legend>Login</legend>
