@@ -307,5 +307,20 @@ public class getNotedSessionBean {
         }
         return temp;
     }
-	
+	public List<Note> getUserNote(String username){
+        String query = "SELECT * FROM note WHERE noteID='"+username+"'";
+        List<Note> searchResults = null;
+		
+        searchResults = emf.createEntityManager().createNativeQuery(query).getResultList();
+        
+        return searchResults;
+    }
+	public List<String> getProfCourses(String profName){
+		Vector<String> vs = new Vector<String>();
+		String profName2 = "SELECT userID FROM user WHERE userID= '"+profName+"'";
+		String actualName = (String)emf.createEntityManager().createNativeQuery(profName2).getSingleResult();
+		String query = "SELECT c.courseName FROM course c WHERE c.professor = "+actualName;
+		List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
+		return temp;
+	} 
 }
