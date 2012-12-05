@@ -13,4 +13,5 @@
     <jdbc-resource enabled="true" jndi-name="ntagliasacchiJNDI" object-type="user" pool-name="mysql_ntagliasacch_ntagliasacchPool"/>
     <jdbc-resource enabled="true" jndi-name="newSourcemysql2" object-type="user" pool-name="mysql_ntagliasacch_ntagliasacchPool"/>
     <jdbc-resource enabled="true" jndi-name="ntag_mysql2" object-type="user" pool-name="mysql_ntagliasacch_ntagliasacchPool"/>
+    <jdbc-resource enabled="true" jndi-name="newmysql2Connection" object-type="user" pool-name="mysql_ntagliasacch_ntagliasacchPool"/>
 </resources>
