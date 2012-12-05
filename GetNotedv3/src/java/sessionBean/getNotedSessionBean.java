@@ -261,30 +261,30 @@ public class getNotedSessionBean {
 		List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
 		Vector<String> ntemp = new Vector<String>();
 		for(int i=0; i<temp.size(); i++){
-            String query2= "SELECT username FROM user WHERE userID='" + temp.get(i) +"'";
+            String query2= "SELECT username FROM user WHERE userID=" + temp.get(i);
             ntemp.add((String)emf.createEntityManager().createNativeQuery(query2).getSingleResult());
 		}
 		return ntemp;
 		
 	}
-	public List<String> getProfCourses(String profName){
-		Vector<String> vs = new Vector<String>();
-		String query = "SELECT c.courseName FROM course c WHERE c.professor = '"+profName+"'";
-		List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
-		return temp;
-	}
 	public List<Note> sort(String username){
-        String query2 = "SELECT userID FROM user WHERE userID="+username;
+        String query2 = "SELECT userID FROM user WHERE username='"+username+"'";
 		
-        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID= '"+query2+"' ORDER BY N.netVote DESC";
+        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID= "+query2+" ORDER BY N.netVote DESC";
         List<Note> result= emf.createEntityManager().createNativeQuery(query).getResultList();
         return result;
     }
     public List<Note> sortId(String username){
-        String query2 = "SELECT userID FROM user WHERE userID="+username;
+        String query2 = "SELECT userID FROM user WHERE username='"+username+"'";
 		
-        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID= '"+query2+"' ORDER BY N.user DESC";
+        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID="+query2+" ORDER BY N.user DESC";
         List<Note> result= emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
+    public List<String> getSchoolsWithNoBuddies(String username){
+        String query2 = "SELECT userID FROM user WHERE username='"+username+"'";
+        String query = "SELECT s.nameOfSchool FROM School s WHERE s.nameOfSchool NOT IN(SELECT DISTINCT s.nameOfSchool FROM buddies b, school s, user u WHERE 2= b.friendsWith AND b.friendsWith ="+query2+ "AND u.school = s.nameOfSchool)";
+        List<String> result = emf.createEntityManager().createNativeQuery(query).getResultList();
         return result;
     }
 	
