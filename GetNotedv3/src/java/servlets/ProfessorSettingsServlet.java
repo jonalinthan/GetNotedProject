@@ -9,6 +9,7 @@ import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,9 @@ public class ProfessorSettingsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            RequestDispatcher rd = request.getRequestDispatcher("professorSettings.jsp");
+            rd.forward(request, response);
+            
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
             out.println("<head>");

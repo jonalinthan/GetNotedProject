@@ -13,5 +13,11 @@
     </head>
     <body>
         <h1>Professor Page</h1>
+        <form method="post" name="professorsettings" action="ProfessorSettingsServlet" >
+                    <input type="submit" value="Settings" />
+        </form>
+        <form method="post" name="questionBanksettings" action="ListQuestionBankServlet" >
+                    <input type="submit" value="List Question Bank Questions" />
+        </form>
     </body>
 </html>

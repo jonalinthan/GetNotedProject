@@ -16,6 +16,14 @@
         <servlet-name>GetBuddiesServlet</servlet-name>
         <servlet-class>servlets.GetBuddiesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StudentSettingsServlet</servlet-name>
+        <servlet-class>servlets.StudentSettingsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfessorSettingsServlet</servlet-name>
+        <servlet-class>servlets.ProfessorSettingsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -32,6 +40,14 @@
         <servlet-name>GetBuddiesServlet</servlet-name>
         <url-pattern>/GetBuddiesServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentSettingsServlet</servlet-name>
+        <url-pattern>/StudentSettingsServlet</url-pattern>
+        </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfessorSettingsServlet</servlet-name>
+        <url-pattern>/ProfessorSettingsServlet</url-pattern>
+        </servlet-mapping>
     <session-config>
         <session-timeout>
             30

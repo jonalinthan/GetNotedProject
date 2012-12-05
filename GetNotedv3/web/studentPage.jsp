@@ -13,5 +13,9 @@
     </head>
     <body>
         <h1>Student Page</h1>
+        <form method="post" name="studentsettings" action="StudentSettingsServlet" >
+                    <input type="submit" value="Settings" />
+        </form>
+        
     </body>
 </html>

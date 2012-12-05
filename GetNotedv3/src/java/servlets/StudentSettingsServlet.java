@@ -7,6 +7,7 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +37,9 @@ public class StudentSettingsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
+            RequestDispatcher rd = request.getRequestDispatcher("studentSettings.jsp");
+            rd.forward(request, response);
+            
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet StudentSettingsServlet</title>");            

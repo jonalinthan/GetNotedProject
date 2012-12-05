@@ -42,15 +42,18 @@ public class ListQuestionBankServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            RequestDispatcher rd = request.getRequestDispatcher("ListQuestionBank.jsp");
+            rd.forward(request, response);
+            
             Professor p = (Professor)request.getSession().getAttribute("professor");
             List<String> qb = getNotedBean.listQB(p);
             
             //sets the attribute of what we just got
             request.getSession().setAttribute("questionBankquestions", qb);
             
-            RequestDispatcher rd = request.getRequestDispatcher("questionBank.jsp");
+            //rd = request.getRequestDispatcher("questionBank.jsp");
             //pushes you to the file you just dispatched
-            rd.forward(request, response);
+            //rd.forward(request, response);
         } finally {             
             out.close();
         }
