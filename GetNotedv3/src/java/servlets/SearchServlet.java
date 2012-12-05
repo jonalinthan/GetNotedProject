@@ -47,11 +47,11 @@ public class SearchServlet extends HttpServlet {
             
             String criteria = (String) request.getParameter("criteria");
                         
-            String keyword = (String) request.getParameter("searchString");
+            String keyword = (String) request.getParameter("FinalSearchString");
             List<Note> result = null;
             result=getNotedBean.userQuery(keyword, criteria);
             request.getSession().setAttribute("searchResult", result);
-            RequestDispatcher rd = request.getRequestDispatcher("searchResults.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("FinalSearchResults.jsp");
             rd.forward(request, response);
         } finally {            
             out.close();

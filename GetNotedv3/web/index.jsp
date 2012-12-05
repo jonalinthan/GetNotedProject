@@ -15,5 +15,6 @@
         <h1>Welcome!</h1>
         <a href="login.jsp">Login</a>
         <a href="GenerateSchoolAndMajorServlet">Register</a>
+        <a href="searchResults.jsp"> search </a>
     </body>
 </html>

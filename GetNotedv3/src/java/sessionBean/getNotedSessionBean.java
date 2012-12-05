@@ -48,6 +48,25 @@ public class getNotedSessionBean {
             return null;
         }
     }
+    
+    public Professor lookUpProfessor(String username){
+        String query = "SELECT P.professorID FROM User U, Professor P WHERE U.username='" + username + "'";
+        List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
+            if (temp.size() <= 0)
+                return null;
+        Professor prof = (Professor) emf.createEntityManager().find(Professor.class, temp.get(0));
+        return prof;
+    }
+    
+    public Student lookUpStudent(String username){
+        String query = "SELECT S.studentID FROM User U, Student S WHERE U.username='" + username + "'";
+        List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
+            if (temp.size() <= 0)
+                return null;
+        Student stud = (Student) emf.createEntityManager().find(Student.class, temp.get(0));
+        return stud;
+    }
+    
      public void registerUser(HttpServletRequest request){
        String userAt[] = {"username", "password","firstName","lastName", "email","school"};
             String userVal[] = new String[6];
@@ -288,7 +307,7 @@ public class getNotedSessionBean {
         return result;
     }
 	
-	public List<String> listQB(Professor professor){
+    public List<String> listQB(Professor professor){
         List<String> temp = null;
         
         if(professor != null){
@@ -315,29 +334,15 @@ public class getNotedSessionBean {
         
         return searchResults;
     }
-	public List<String> getProfCourses(String profName){
+    public List<String> getProfCourses(String profName){
 		Vector<String> vs = new Vector<String>();
 		String profName2 = "SELECT userID FROM user WHERE userID= '"+profName+"'";
 		String actualName = (String)emf.createEntityManager().createNativeQuery(profName2).getSingleResult();
 		String query = "SELECT c.courseName FROM course c WHERE c.professor = "+actualName;
 		List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
 		return temp;
-	} 
-	public List<Note> sort(String userID){
-        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID= "+userID+" ORDER BY N.netVote DESC";
-        List<Note> result= (List<Note>)emf.createEntityManager().createNativeQuery(query).getResultList();
-        return result;
-    }
-    public List<Note> sortId(String userID){
-        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID="+userID+" ORDER BY N.user DESC";
-        List<Note> result= (List<Note>)emf.createEntityManager().createNativeQuery(query).getResultList();
-        return result;
-    }
-    public List<String> getSchoolsWithNoBuddies(String userID){
-        String query = "SELECT s.nameOfSchool FROM School s WHERE s.nameOfSchool NOT IN(SELECT DISTINCT s.nameOfSchool FROM buddies b, school s, user u WHERE 2= b.friendsWith AND b.friendsWith ="+userID+ "AND u.school = s.nameOfSchool)";
-        List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
-        return result;
-    }
+    } 
+    
     public String getNumCourses(String userID){
         String query = "SELECT s.userID, Count(t.courseCode) FROM transcript t, student s WHERE t.username = s.userID GROUP BY s.userID ASC";
         String result = (String)emf.createEntityManager().createNativeQuery(query).getSingleResult();
@@ -358,7 +363,7 @@ public class getNotedSessionBean {
         List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
         return result;
     }
-	public List<Note> userQuery(String keyword, String criteria){
+    public List<Note> userQuery(String keyword, String criteria){
         String query = "";
         String searchable="";
         if(criteria.equals("user")){

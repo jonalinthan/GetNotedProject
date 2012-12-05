@@ -60,10 +60,14 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
                 request.getSession().setAttribute("user", user);
                 if (user.getUserType().equals("student")) {
+                    request.getSession().setAttribute("student", getNotedBean.lookUpStudent(username));
+                    
                     RequestDispatcher rd = request.getRequestDispatcher("studentPage.jsp");
                     rd.forward(request, response);
                 }
                 else if (user.getUserType().equals("professor")) {
+                    request.getSession().setAttribute("professor", getNotedBean.lookUpProfessor(username));
+                    
                     RequestDispatcher rd = request.getRequestDispatcher("professorPage.jsp");
                     rd.forward(request, response);
                 }

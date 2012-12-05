@@ -20,7 +20,7 @@
                             <option value="user">Username</option>
                         </select>
                         &nbsp; For: &nbsp;
-                        <input type="text" name="searchString"/>
+                        <input type="text" name="FinalSearchString"/>
                         <input type="submit" value="Search" />
                     </form>
     </body>
