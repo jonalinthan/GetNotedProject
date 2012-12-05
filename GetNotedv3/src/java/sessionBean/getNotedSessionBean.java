@@ -5,6 +5,7 @@
 package sessionBean;
 
 import entities.*;
+import java.util.Vector;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;

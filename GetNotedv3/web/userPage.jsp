@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <input type="password" name="buddies" 
-               action ="http://localhost:8080/GetNotedv2/GetBuddies"/>Get all of my buddies<br />
+        <input type="password" name="buddies">
+        <a href="GetBuddiesServlet">hurdur</a>
     </body>
 </html>

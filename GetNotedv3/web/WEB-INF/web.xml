@@ -12,6 +12,10 @@
         <servlet-name>GenerateSchoolAndMajorServlet</servlet-name>
         <servlet-class>servlets.GenerateSchoolAndMajorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetBuddiesServlet</servlet-name>
+        <servlet-class>servlets.GetBuddiesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>GenerateSchoolAndMajorServlet</servlet-name>
         <url-pattern>/GenerateSchoolAndMajorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetBuddiesServlet</servlet-name>
+        <url-pattern>/GetBuddiesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
