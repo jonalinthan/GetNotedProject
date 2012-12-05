@@ -288,5 +288,24 @@ public class getNotedSessionBean {
         return result;
     }
 	
+	public List<String> listQB(Professor professor){
+        List<String> temp = null;
+        
+        if(professor != null){
+            String query = "SELECT Distinct q.question FROM questionbank q, User u, Professor p WHERE u.userID= '" + professor.getProfessorID() + "' AND q.questionOwner = u.username";
+            temp = emf.createEntityManager().createNativeQuery(query).getResultList();
+        }
+        return temp;
+    }
+	
+    public List<String> getQBAnswer(Professor professor, String question){
+        List<String> temp = null;
+        
+        if(professor != null){
+			String query = "SELECT q.correctAnswer FROM questionbank q, User u, Professor p WHERE u.userID= '" + professor.getProfessorID() + "' AND q.questionOwner = u.username AND q.question = '" + question + "'";
+			temp = emf.createEntityManager().createNativeQuery(query).getResultList();
+        }
+        return temp;
+    }
 	
 }
