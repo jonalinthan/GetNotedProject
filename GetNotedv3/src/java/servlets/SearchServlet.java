@@ -17,7 +17,9 @@ import entities.Note;
 import entities.Professor;
 import entities.Student;
 import entities.User;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.servlet.RequestDispatcher;
 
 
@@ -43,19 +45,14 @@ public class SearchServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
             
             String criteria = (String) request.getParameter("criteria");
                         
             String keyword = (String) request.getParameter("FinalSearchString");
-            List<Note> result = null;
-            result=getNotedBean.userQuery(keyword, criteria);
+            List<Note> result=getNotedBean.userQuery(keyword, criteria);
             request.getSession().setAttribute("searchResult", result);
             RequestDispatcher rd = request.getRequestDispatcher("FinalSearchResults.jsp");
             rd.forward(request, response);
-        } finally {            
-            out.close();
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

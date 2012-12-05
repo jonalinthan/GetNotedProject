@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Professor Page</title>
+        <title>Professor ${user.lastName}</title>
     </head>
     <body>
-        <h1>Professor Page</h1>
+        <h1>Welcome Professor ${user.lastName}</h1>
         <form method="post" name="professorsettings" action="ProfessorSettingsServlet" >
                     <input type="submit" value="Settings" />
         </form>

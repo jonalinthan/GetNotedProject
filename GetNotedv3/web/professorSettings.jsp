@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Professor ${user.lastName}</title>
+        <title>Professor ${user.lastName} Settings</title>
     </head>
     <body>
-        <h1>Welcome Professor ${user.lastName}!</h1>
+        <h1>Professor ${user.lastName}'s Settings</h1>
         <form name="settingsProf" action="" method="post">
             <fieldset>
                 <legend>Change Student Info</legend>

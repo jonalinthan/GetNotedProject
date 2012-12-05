@@ -14,7 +14,7 @@
         <title>Question Bank</title>
     </head>
     <body>
-        <h1>Question Bank</h1>
+        <h1>Professor ${user.lastName}'s Question Bank</h1>
     <c:forEach var="qb" items="${questionBankquestions}">
         <p> ${qb}<br></p>
     </c:forEach>

@@ -8,10 +8,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Note Search!</title>
     </head>
     <body>
-        <h2>Browse for Books</h2>
+        <h2>Find a note!</h2>
              <p>Please choose a criteria. Keyword is optional.</p>
                     <form name="BrowseForm" method="post" action="SearchServlet" onSubmit=" return validateForm()">
                         Browse by:

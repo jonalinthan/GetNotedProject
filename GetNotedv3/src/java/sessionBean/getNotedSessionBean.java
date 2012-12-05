@@ -5,6 +5,10 @@
 package sessionBean;
 
 import entities.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 import java.util.ArrayList;
 import java.util.Date;
@@ -373,7 +377,7 @@ public class getNotedSessionBean {
         else{
             searchable = keyword;
         }
-		List<Note> results=(List<Note>)searchNote(searchable, criteria);
+		List<Note> results= searchNote(searchable, criteria);
 		return results;
     }
 	
@@ -385,7 +389,7 @@ public class getNotedSessionBean {
 		else{
 			query = "SELECT * FROM note WHERE nameOfNote='"+keyword+"'";
 		}
-		List<Note> searchable = (List<Note>)emf.createEntityManager().createNativeQuery(query).getResultList();
+		List<Note> searchable = emf.createEntityManager().createNativeQuery(query).getResultList();
 		return searchable;
     }
 	public ArrayList<Object> departmentAverages() throws SQLException{

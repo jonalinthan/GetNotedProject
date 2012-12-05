@@ -11,11 +11,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Search Results</title>
     </head>
     <body>
-         <c:forEach var="p" items="$(searchResult)">
-               <p> ${p}<br></p>
+         <c:forEach var="p" items="${searchResult}">
+             <c:forEach var="q" items="${p}">
+               <p>${q}  </p>
+             </c:forEach>
+              
         </c:forEach>  
     </body>
 </html>
