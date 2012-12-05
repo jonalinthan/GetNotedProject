@@ -323,4 +323,39 @@ public class getNotedSessionBean {
 		List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
 		return temp;
 	} 
+	public List<Note> sort(String userID){
+        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID= "+userID+" ORDER BY N.netVote DESC";
+        List<Note> result= (List<Note>)emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
+    public List<Note> sortId(String userID){
+        String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID="+userID+" ORDER BY N.user DESC";
+        List<Note> result= (List<Note>)emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
+    public List<String> getSchoolsWithNoBuddies(String userID){
+        String query = "SELECT s.nameOfSchool FROM School s WHERE s.nameOfSchool NOT IN(SELECT DISTINCT s.nameOfSchool FROM buddies b, school s, user u WHERE 2= b.friendsWith AND b.friendsWith ="+userID+ "AND u.school = s.nameOfSchool)";
+        List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
+    public String getNumCourses(String userID){
+        String query = "SELECT s.userID, Count(t.courseCode) FROM transcript t, student s WHERE t.username = s.userID GROUP BY s.userID ASC";
+        String result = (String)emf.createEntityManager().createNativeQuery(query).getSingleResult();
+        return result;
+    }
+    public List<String> getCoursesTaken(String userID){
+        String query = "SELECT T.courseCode, S.userID FROM transcript T, student S WHERE"+ userID+"= T.username";
+        List<String> result= (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
+    public List<String> getBuddyCourses(String userID){
+        String query = "SELECT B.userID, T.courseCode FROM buddies B, transcript T, student S WHERE B.friendsWith= S.userID AND T.username= B.userID";
+        List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
+    public List<String> getCurrentCourses(String userID){
+        String query = "";
+        List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
 }
