@@ -161,3 +161,7 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+GetNotedv3/setup/glassfish-resources.xml
+
+GetNotedv3/nbproject/private/private.properties
