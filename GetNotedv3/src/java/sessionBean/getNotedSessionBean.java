@@ -358,14 +358,14 @@ public class getNotedSessionBean {
         return result;
     }
     public List<Object[]> getBuddyCourses(String userID){
-        String query = "SELECT B.userID, T.courseCode FROM buddies B, transcript T, student S WHERE B.friendsWith= S.userID AND T.username= B.userID";
+        String query= "SELECT B.userID, T.courseCode FROM transcript T, Buddies B WHERE T.username=B.userID AND B.friendsWith="+userID;
         List<Object[]> result = (List<Object[]>)emf.createEntityManager().createNativeQuery(query).getResultList();
         int i;
         ArrayList<Object[]> endResult = new ArrayList<Object[]>();
         for(i=0; i<result.size(); i++){
             Object[] current = result.get(i);
             String cur1 = (String)current[1];
-            String query2 = "SELECT courseName FROM course WHERE "+ cur1 +"=courseID";
+            String query2 = "SELECT courseName FROM course WHERE '"+ cur1 +"'=courseID";
             String query3 = "SELECT username FROM user WHERE userID="+ current[0];
             String courseName = (String)emf.createEntityManager().createNativeQuery(query2).getSingleResult();
             String userName = (String)emf.createEntityManager().createNativeQuery(query3).getSingleResult();
@@ -404,31 +404,14 @@ public class getNotedSessionBean {
 		List<Note> searchable = emf.createEntityManager().createNativeQuery(query).getResultList();
 		return searchable;
     }
-    public ArrayList<Object> departmentAverages() throws SQLException{
-        ConnectionManager cm = ConnectionManager.getManager();
-        cm.loadDriver();
-        Connection con= cm.getConnection();
-        Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);   
+    public List<Object[]> departmentAverages() throws SQLException{
         String query = "SELECT D.departmentName, AVG(T.averageScore) FROM department D, test T, professor P WHERE P.department = D.departmentID AND T.testOwner=P.professorID GROUP BY department DESC";
-        ResultSet result =stmt.executeQuery(query);
-        ArrayList<Object> list = new ArrayList<Object>();
-        int i=0;
-        for(i=0; i<list.size(); i++){
-            list.add(result.getArray(i));
-        }
-        return list;
+        List<Object[]> result = emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
     }
-    public List<Object> avgNotes() throws SQLException{
-        ConnectionManager cm = ConnectionManager.getManager();
-        Connection con= cm.getConnection();
-        Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);   
+    public List<Object[]> avgNotes() throws SQLException{
         String query="SELECT CourseCode, AVG(A.Average) FROM AvgNotes A GROUP BY(CourseCode)";
-        ResultSet result =stmt.executeQuery(query);
-        ArrayList<Object> list = new ArrayList<Object>();
-        int i=0;
-        for(i=0; i<list.size(); i++){
-            list.add(result.getArray(i));
-        }
-        return list;
+        List<Object[]> result = emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
     }
 }

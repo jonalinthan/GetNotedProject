@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -40,7 +41,7 @@ public class DepartmentAverageServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            ArrayList<Object> al=getNotedBean.departmentAverages();
+            List<Object[]> al=getNotedBean.departmentAverages();
             request.getSession().setAttribute("dptavg", al);
             RequestDispatcher rd = request.getRequestDispatcher("DepartmentAverage.jsp");
             rd.forward(request, response); 

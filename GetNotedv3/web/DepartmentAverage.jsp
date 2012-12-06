@@ -13,10 +13,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <c:forEach var= "k" items="${dptavg}">
-        <p> ${k}<br /></p>
-    </c:forEach>
     <body>
-        <h1>Hello World!</h1>
+    <table>
+        
+    <c:forEach var= "k" items="${dptavg}">
+        <tr>
+            <c:forEach var="q" items = "${k}">
+                <td>${q}</td>
+            </c:forEach>
+        </tr>
+    </c:forEach>
+    </table>
     </body>
 </html>

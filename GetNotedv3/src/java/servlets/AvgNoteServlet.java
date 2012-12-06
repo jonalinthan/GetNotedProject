@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -41,7 +42,7 @@ public class AvgNoteServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             
-            ArrayList<Object> al = getNotedBean.departmentAverages();
+            List<Object[]> al = getNotedBean.departmentAverages();
             request.getSession().setAttribute("avgnotes", al);
             
             RequestDispatcher rd = request.getRequestDispatcher("AverageNoteClasses.jsp");

@@ -13,12 +13,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-<<<<<<< HEAD
         <h1>Average note: </h1>
-=======
->>>>>>> brackets
+        <table>
         <c:forEach var="p" items="${avgnotes}">
-               <p> ${p}<br></p>
-        </c:forEach>        
+            <tr>
+            <c:forEach var="q" items = "${p}">
+                <td>${q}</td>
+            </c:forEach>
+            </tr>
+        </c:forEach>
+        </table>
     </body>
 </html>
