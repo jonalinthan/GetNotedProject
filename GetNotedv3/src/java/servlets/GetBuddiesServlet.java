@@ -41,7 +41,7 @@ public class GetBuddiesServlet extends HttpServlet {
         try {
             /* TODO output your page here. You may use following sample code. */
             User us = (User)request.getSession().getAttribute("user");
-            Vector<String>rs = getNotedBean.getUsersBuddies(us.getUsername());
+            Vector<String>rs = getNotedBean.getUsersBuddies(us.getUserID());
             request.getSession().setAttribute("buddyList", rs);
             RequestDispatcher rd = request.getRequestDispatcher("listBuddies.jsp");
             rd.forward(request, response);

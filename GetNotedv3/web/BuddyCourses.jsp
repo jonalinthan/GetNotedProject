@@ -14,8 +14,17 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <table>
+            <tr>
+                <td>Buddy Name</td><td>Buddy Course</td>
+            </tr>
         <c:forEach var="p" items="${buddyCourses}">
-               <p> ${p}<br></p>
+            <tr>
+                <c:forEach var="q" items ="${p}">
+                    <td>${q}</td>
+                </c:forEach>
+            </tr>
         </c:forEach>  
+        </table>
     </body>
 </html>

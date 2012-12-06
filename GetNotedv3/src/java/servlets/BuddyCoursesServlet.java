@@ -40,7 +40,7 @@ public class BuddyCoursesServlet extends HttpServlet {
         try {
             /* TODO output your page here. You may use following sample code. */
            User user = (User)request.getSession().getAttribute("user");
-           List<String> result = getNotedBean.getBuddyCourses(user.getUserID());
+           List<Object[]> result = getNotedBean.getBuddyCourses(user.getUserID());
            request.getSession().setAttribute("buddyCourses", result);
            RequestDispatcher rd = request.getRequestDispatcher("BuddyCourses.jsp");
            rd.forward(request, response); 

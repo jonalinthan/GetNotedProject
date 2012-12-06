@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <c:forEach var="q" items="currentCourses">
+        <c:forEach var="q" items="${curCourses}">
             <p>${q}<br></p>
         </c:forEach>
     </body>

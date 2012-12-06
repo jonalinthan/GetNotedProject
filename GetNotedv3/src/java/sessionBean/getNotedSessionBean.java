@@ -279,18 +279,18 @@ public class getNotedSessionBean {
          }
          return null;
      }
-	public Vector<String> getUsersBuddies(String username){
-		String query = "SELECT userID FROM Buddies WHERE friendsWith='" + username + "'";
-		List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
-		Vector<String> ntemp = new Vector<String>();
-		for(int i=0; i<temp.size(); i++){
+    public Vector<String> getUsersBuddies(String username){
+	String query = "SELECT userID FROM Buddies WHERE friendsWith=" + username;
+        List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
+	Vector<String> ntemp = new Vector<String>();
+        for(int i=0; i<temp.size(); i++){
             String query2= "SELECT username FROM user WHERE userID=" + temp.get(i);
             ntemp.add((String)emf.createEntityManager().createNativeQuery(query2).getSingleResult());
-		}
-		return ntemp;
+	}
+	return ntemp;
 		
 	}
-	public List<Note> sort(String username){
+    public List<Note> sort(String username){
         String query2 = "SELECT userID FROM user WHERE username='"+username+"'";
 		
         String query="SELECT N.user, N.netvotes FROM note N, user U WHERE U.userID= N.user AND U.userID= "+query2+" ORDER BY N.netVote DESC";
@@ -331,7 +331,7 @@ public class getNotedSessionBean {
         return temp;
     }
     public List<Note> getUserNote(String username){
-        String query = "SELECT * FROM note WHERE noteID='"+username+"'";
+        String query = "SELECT * FROM note WHERE user="+username;
         List<Note> searchResults = null;
 		
         searchResults = emf.createEntityManager().createNativeQuery(query).getResultList();
@@ -347,23 +347,35 @@ public class getNotedSessionBean {
 		return temp;
     } 
     
-    public String getNumCourses(String userID){
-        String query = "SELECT s.userID, Count(t.courseCode) FROM transcript t, student s WHERE t.username = s.userID GROUP BY s.userID ASC";
-        String result = (String)emf.createEntityManager().createNativeQuery(query).getSingleResult();
+    public Long getNumCourses(String userID){
+    String query="SELECT Count(t.courseCode) FROM transcript t, student s WHERE t.username="+userID+" AND s.userID=t.username GROUP BY s.userID ASC";
+        Long result = (Long)emf.createEntityManager().createNativeQuery(query).getSingleResult();
         return result;
     }
-    public List<String> getCoursesTaken(String userID){
-        String query = "SELECT T.courseCode, S.userID FROM transcript T, student S WHERE"+ userID+"= T.username";
-        List<String> result= (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
+    public List<Object[]> getCoursesTaken(String userID){
+        String query = "SELECT * FROM transcript T WHERE "+ userID+"= T.username";
+        List<Object[]> result= (List<Object[]>)emf.createEntityManager().createNativeQuery(query).getResultList();
         return result;
     }
-    public List<String> getBuddyCourses(String userID){
+    public List<Object[]> getBuddyCourses(String userID){
         String query = "SELECT B.userID, T.courseCode FROM buddies B, transcript T, student S WHERE B.friendsWith= S.userID AND T.username= B.userID";
-        List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
-        return result;
+        List<Object[]> result = (List<Object[]>)emf.createEntityManager().createNativeQuery(query).getResultList();
+        int i;
+        ArrayList<Object[]> endResult = new ArrayList<Object[]>();
+        for(i=0; i<result.size(); i++){
+            Object[] current = result.get(i);
+            String cur1 = (String)current[1];
+            String query2 = "SELECT courseName FROM course WHERE "+ cur1 +"=courseID";
+            String query3 = "SELECT username FROM user WHERE userID="+ current[0];
+            String courseName = (String)emf.createEntityManager().createNativeQuery(query2).getSingleResult();
+            String userName = (String)emf.createEntityManager().createNativeQuery(query3).getSingleResult();
+            Object[] cAndU = {userName, courseName};
+            endResult.add(cAndU);
+        }
+        return endResult;
     }
     public List<String> getCurrentCourses(String userID){
-        String query = "";
+        String query = "SELECT courseCode FROM transcript WHERE username="+userID+" AND isCurrentlyTaking=1";
         List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
         return result;
     }

@@ -15,8 +15,17 @@
     </head>
     <body>
         <p>${numOfCourses}</p>
+        <table>
+            <tr>
+                <td>Currently Taking</td><td>Username</td><td>Course Code</td> <td>Semester</td>
+            </tr>
         <c:forEach var ="course" items ="${courseTaken}">
-            <p> ${course}<br></p>
+            <tr>
+                <c:forEach var = "p" items = "${course}">
+                    <td> ${p}</td>
+                </c:forEach>
+            </tr>
         </c:forEach>
+        </table>
     </body>
 </html>

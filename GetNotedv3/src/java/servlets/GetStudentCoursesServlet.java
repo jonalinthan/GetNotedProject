@@ -38,11 +38,12 @@ public class GetStudentCoursesServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            User user = (User)request.getAttribute("user");
-            String result = getNotedBean.getNumCourses(user.getUserID());
-            int result2 = Integer.parseInt(result);
+            User user = (User)request.getSession().getAttribute("user");
+            String id = user.getUserID();
+            Long result =  getNotedBean.getNumCourses(id);
+            int result2 = result.intValue();
             request.getSession().setAttribute("numOfCourses", result2);
-            List<String> coursesTaken = getNotedBean.getCoursesTaken(user.getUserID());
+            List<Object[]> coursesTaken = getNotedBean.getCoursesTaken(id);
             request.getSession().setAttribute("courseTaken", coursesTaken);
             RequestDispatcher rd = request.getRequestDispatcher("StudentCoursePage.jsp");
             rd.forward(request, response);     
