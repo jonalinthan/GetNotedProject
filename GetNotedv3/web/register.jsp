@@ -17,7 +17,7 @@
     <body>
         <h1>Hello World!</h1>
         <!-- Need Servlet for Action-->
-        <form name="login" action="" method="post">
+        <form name="login" action="RegisterServlet" method="post">
             <fieldset>
                 <legend>Registration</legend>
                     <label for="username">Username:</label>

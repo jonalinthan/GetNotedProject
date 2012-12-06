@@ -63,8 +63,21 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form method="post" action="">
+        <form method="post" action="SubmitNoteServlet">
             <textarea id="elm1" name="content"></textarea>
+            
+            <label for="topic">Topic: </label>
+            <input name="topic" />&nbsp;&nbsp;
+            <label for="nameOfNote">Name of Note:</label>
+            <input name="nameOfNote" /><br />
+            <label for="class">Class: </label>
+            <select name="class">
+                <c:forEach items="${coursesCurrentAndOld}" var="course">
+                    <option value="${course.courseID}">${course.courseCode} (${course.semester}) - ${course.courseName}</option>
+                </c:forEach>
+            </select>
+            <br />
+            <input type="submit" value="Post Note" />
         </form>
         <h1></h1>
     </body>

@@ -11,12 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.User;
+import entities.Student;
+import entities.Professor;
+import entities.School;
+import entities.Department;
+import javax.servlet.RequestDispatcher;
+import sessionBean.getNotedSessionBean;
+import javax.ejb.EJB;
+
 /**
  *
  * @author Jonathan
  */
 public class RegisterServlet extends HttpServlet {
 
+    @EJB getNotedSessionBean getNotedBean;
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -32,17 +43,80 @@ public class RegisterServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /*
-             * TODO output your page here. You may use following sample code.
-             */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            String majorID, departmentID = null;
+            int yearOfGraduation = 0;
+            String slot = getNotedBean.highestSlotAvailable();
+            User user = null;
+            Student student = null;
+            Professor professor = null;
+            
+            String username = (String) request.getParameter("username");
+            String password = (String) request.getParameter("password");
+            String firstName = (String) request.getParameter("firstName");
+            String lastName = (String) request.getParameter("lastName");
+            String schoolID = (String) request.getParameter("school");
+            System.out.println(schoolID);
+            String email = (String) request.getParameter("email");
+            
+            String userType = (String) request.getParameter("type");
+            
+            if (userType.equals("student")) {
+                majorID = (String) request.getParameter("major");
+                yearOfGraduation = Integer.parseInt((String)request.getParameter("yearOfGraduation"));
+            
+                School school = getNotedBean.getSchool(schoolID);
+                String schoolName = (String) school.getNameOfSchool();
+                
+                Department dept = getNotedBean.getDepartment(majorID);
+                String major = dept.getDepartmentName();
+                
+                user = new User();
+                student = new Student();
+                
+                user.setUserID(slot);
+                user.setUsername(username);
+                user.setPassword(password);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setSchool(schoolName);
+                user.setEmail(email);
+                user.setUserType("student");
+                student.setMajor(major);
+                student.setYearOfGraduation(yearOfGraduation);
+                student.setUserID(user.getUserID());
+                
+                getNotedBean.saveUser(user);
+                getNotedBean.saveStudent(student);
+            }
+            else if (userType.equals("professor")) {
+                departmentID = (String) request.getParameter("department");
+                
+                School school = getNotedBean.getSchool(schoolID);
+                String schoolName = (String) school.getNameOfSchool();
+                
+                Department dept = getNotedBean.getDepartment(departmentID);
+                String departmentName = dept.getDepartmentName();
+                
+                user = new User();
+                professor = new Professor();
+                
+                user.setUserID(slot);
+                user.setUsername(username);
+                user.setPassword(password);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setSchool(schoolName);
+                user.setUserType("professor");
+                user.setEmail(email);
+                professor.setProfessorID(user.getUserID());
+                professor.setDepartment(dept);
+                
+                getNotedBean.saveUser(user);
+                getNotedBean.saveProfessor(professor);
+            }
+            
+            
         } finally {            
             out.close();
         }

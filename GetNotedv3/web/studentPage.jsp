@@ -48,6 +48,9 @@
                     <input name="profName" /><br />
                     <input type="submit" value="See which schools you do not have a buddy at yet" />
         </form>
+        <form method="post" name="submitNote" action="GenerateCoursesServlet" >
+            <input type="submit" value="Submit Note" /><br />
+        </form>
         
     </body>
 </html>
