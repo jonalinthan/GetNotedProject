@@ -20,7 +20,7 @@ import sessionBean.getNotedSessionBean;
  *
  * @author aaronmeltzer
  */
-public class ListNotesServlet extends HttpServlet {
+public class ListCourseProfessorIsTeachingServlet extends HttpServlet {
     @EJB getNotedSessionBean getNotedBean;
 
     /**
@@ -41,7 +41,7 @@ public class ListNotesServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             List<String> courses = getNotedBean.getProfCourses(request.getParameter("profName"));
             request.getSession().setAttribute("profCourses", courses);
-            RequestDispatcher rd = request.getRequestDispatcher("listNotes.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("listCourseProfessorIsTeaching.jsp");
             rd.forward(request, response);
 
         } finally {            
