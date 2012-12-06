@@ -20,7 +20,7 @@
                     <input type="submit" value="List Question Bank Questions" />
         </form>
         
-         <form method="post" name="avgnoteclass" action="AvgNoteServlet" >
+        <form method="post" name="avgnoteclass" action="AvgNoteServlet" >
                     <input type="submit" value="Get the average Note Value by Class" />
         </form>
          <form method="post" name="dptavg" action="DepartmentAverageServlet" >

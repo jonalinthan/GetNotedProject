@@ -39,8 +39,9 @@ public class GetNoteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            User user = (User)request.getAttribute("user");
-            List<Note> notes=getNotedBean.getUserNote(user.getUserID());
+            User user = (User)request.getSession().getAttribute("user");
+            String id = user.getUserID();
+            List<Note> notes=getNotedBean.getUserNote(id);
             request.getSession().setAttribute("notes", notes);
             RequestDispatcher rd = request.getRequestDispatcher("GetNotes.jsp");
             rd.forward(request, response);            

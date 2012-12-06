@@ -40,8 +40,49 @@
         <servlet-name>GetNoteServlet</servlet-name>
         <servlet-class>servlets.GetNoteServlet</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>BuddyCoursesServlet</servlet-name>
+        <servlet-class>servlets.BuddyCoursesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CurCoursesServlet</servlet-name>
+        <servlet-class>servlets.CurCoursesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetStudentCoursesServlet</servlet-name>
+        <servlet-class>servlets.GetStudentCoursesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListNotesServlet</servlet-name>
+        <servlet-class>servlets.ListNotesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SchoolNoBuddiesServlet</servlet-name>
+        <servlet-class>servlets.SchoolNoBuddiesServlet</servlet-class>
+    </servlet>
 
+
+
+    <servlet-mapping>
+        <servlet-name>SchoolNoBuddiesServlet</servlet-name>
+        <url-pattern>/SchoolNoBuddiesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListNotesServlet</servlet-name>
+        <url-pattern>/ListNotesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetStudentCoursesServlet</servlet-name>
+        <url-pattern>/GetStudentCoursesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CurCoursesServlet</servlet-name>
+        <url-pattern>/CurCoursesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuddyCoursesServlet</servlet-name>
+        <url-pattern>/BuddyCoursesServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetNoteServlet</servlet-name>
         <url-pattern>/GetNoteServlet</url-pattern>

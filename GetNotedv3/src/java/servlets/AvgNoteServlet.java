@@ -40,11 +40,13 @@ public class AvgNoteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            
             ArrayList<Object> al = getNotedBean.departmentAverages();
             request.getSession().setAttribute("avgnotes", al);
+            
             RequestDispatcher rd = request.getRequestDispatcher("AverageNoteClasses.jsp");
-            rd.forward(request, response); 
-        } 
+            rd.forward(request, response);
+        }
         catch(SQLException ex){
             Logger.getLogger(AvgNoteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

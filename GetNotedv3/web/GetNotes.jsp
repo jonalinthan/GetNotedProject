@@ -29,7 +29,7 @@
             </tr>
             <c:forEach var="p" items="${notes}">
                 <tr>
-                     <c:forEach var="q" items="p">
+                     <c:forEach var="q" items="${p}">
                          <td> ${q}</td>
                      </c:forEach>
                  </tr>
