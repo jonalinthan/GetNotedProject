@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <c:forEach var="p" items="$(lonely)">
+         <c:forEach var="p" items="${lonely}">
                <p> ${p}<br></p>
         </c:forEach>  
     </body>

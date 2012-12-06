@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <c:forEach var="p" items="$(profCourses)">
+        <c:forEach var="p" items="${profCourses}">
                <p> ${p}<br></p>
         </c:forEach>  
     </body>

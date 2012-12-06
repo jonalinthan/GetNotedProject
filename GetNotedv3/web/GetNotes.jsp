@@ -27,7 +27,7 @@
                 <td>Net Votes</td>
                 <td>Rating</td>
             </tr>
-            <c:forEach var="p" items="$(notes)">
+            <c:forEach var="p" items="${notes}">
                 <tr>
                      <c:forEach var="q" items="p">
                          <td> ${q}</td>

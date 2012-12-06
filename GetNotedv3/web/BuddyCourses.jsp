@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <c:forEach var="p" items="$(buddyCourses)">
+        <c:forEach var="p" items="${buddyCourses}">
                <p> ${p}<br></p>
         </c:forEach>  
     </body>
