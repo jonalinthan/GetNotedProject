@@ -54,7 +54,7 @@ public class getNotedSessionBean {
     }
     
     public Professor lookUpProfessor(String username){
-        String query = "SELECT P.professorID FROM User U, Professor P WHERE U.username='" + username + "'";
+        String query = "SELECT U.userID FROM User U WHERE U.username='" + username + "'";
         List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
             if (temp.size() <= 0)
                 return null;
@@ -63,7 +63,7 @@ public class getNotedSessionBean {
     }
     
     public Student lookUpStudent(String username){
-        String query = "SELECT S.studentID FROM User U, Student S WHERE U.username='" + username + "'";
+        String query = "SELECT U.userID FROM User U WHERE U.username='" + username + "'";
         List<String> temp = emf.createEntityManager().createNativeQuery(query).getResultList();
             if (temp.size() <= 0)
                 return null;

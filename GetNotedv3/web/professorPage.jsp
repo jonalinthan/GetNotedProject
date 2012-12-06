@@ -19,5 +19,18 @@
         <form method="post" name="questionBanksettings" action="ListQuestionBankServlet" >
                     <input type="submit" value="List Question Bank Questions" />
         </form>
+        
+         <form method="post" name="avgnoteclass" action="AverageNoteClasses" >
+                    <input type="submit" value="Get the average Note Value by Class" />
+        </form>
+         <form method="post" name="dptavg" action="DepartmentAverage" >
+                    <input type="submit" value="Get the average score of all tests in a department" />
+        </form>
+         <form method="post" name="getallnotes" action="GetNoteServlet" >
+                    <input type="submit" value="See all your notes" />
+        </form>
+         <form method="post" name="questionBanksettings" action="ListQuestionBankServlet" >
+                    <input type="submit" value="List Question Bank Questions" />
+        </form>
     </body>
 </html>
