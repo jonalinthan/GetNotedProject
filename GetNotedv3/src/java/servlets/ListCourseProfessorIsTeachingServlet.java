@@ -43,7 +43,7 @@ public class ListCourseProfessorIsTeachingServlet extends HttpServlet {
             request.getSession().setAttribute("profCourses", courses);
             RequestDispatcher rd = request.getRequestDispatcher("listCourseProfessorIsTeaching.jsp");
             rd.forward(request, response);
-
+ 
         } finally {            
             out.close();
         }

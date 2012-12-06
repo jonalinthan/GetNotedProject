@@ -15,7 +15,7 @@
         
         <c:forEach var="p" items="${buddyList}">
         <p>
-            ${p}<br>
+                ${p}<br>
         </p>
         </c:forEach>
     </head>
