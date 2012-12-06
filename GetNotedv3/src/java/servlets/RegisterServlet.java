@@ -110,7 +110,7 @@ public class RegisterServlet extends HttpServlet {
                 user.setUserType("professor");
                 user.setEmail(email);
                 professor.setProfessorID(user.getUserID());
-                professor.setDepartment(dept);
+                professor.setDepartment(departmentName);
                 
                 getNotedBean.saveUser(user);
                 getNotedBean.saveProfessor(professor);

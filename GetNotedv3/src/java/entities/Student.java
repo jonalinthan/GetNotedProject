@@ -23,6 +23,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Student.findByMajor", query = "SELECT s FROM Student s WHERE s.major = :major"),
     @NamedQuery(name = "Student.findByYearOfGraduation", query = "SELECT s FROM Student s WHERE s.yearOfGraduation = :yearOfGraduation")})
 public class Student implements Serializable {
+    @JoinColumn(name = "userID", referencedColumnName = "userID")
+    @OneToOne(optional = false)
+    private User user;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -97,6 +100,14 @@ public class Student implements Serializable {
     @Override
     public String toString() {
         return "entities.Student[ userID=" + userID + " ]";
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
 }

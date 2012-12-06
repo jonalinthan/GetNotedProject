@@ -31,6 +31,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByNetVotes", query = "SELECT u FROM User u WHERE u.netVotes = :netVotes"),
     @NamedQuery(name = "User.findByUserType", query = "SELECT u FROM User u WHERE u.userType = :userType")})
 public class User implements Serializable {
+    @Column(name = "admin")
+    private Integer admin;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Student student;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Professor professor;
     @EmbeddedId
     private static final long serialVersionUID = 1L;
     @Id
@@ -213,5 +219,29 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "entities.User[ userID=" + userID + " ]";
+    }
+
+    public Integer getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Integer admin) {
+        this.admin = admin;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 }

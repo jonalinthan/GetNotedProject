@@ -28,6 +28,22 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Note.findByNetVotes", query = "SELECT n FROM Note n WHERE n.netVotes = :netVotes"),
     @NamedQuery(name = "Note.findByRating", query = "SELECT n FROM Note n WHERE n.rating = :rating")})
 public class Note implements Serializable {
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "noteID")
+    private String noteID;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "user")
+    private String user;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "location")
+    private String location;
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected NotePK notePK;
@@ -172,6 +188,40 @@ public class Note implements Serializable {
     @Override
     public String toString() {
         return "entities.Note[ notePK=" + notePK + " ]";
+    }
+
+    public Note(String noteID) {
+        this.noteID = noteID;
+    }
+
+    public Note(String noteID, String user, String location) {
+        this.noteID = noteID;
+        this.user = user;
+        this.location = location;
+    }
+
+    public String getNoteID() {
+        return noteID;
+    }
+
+    public void setNoteID(String noteID) {
+        this.noteID = noteID;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
     
 }

@@ -379,6 +379,13 @@ public class getNotedSessionBean {
         List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
         return result;
     }
+    
+    public List<String> getCoursesEnrolledAndTaken(String userID) {
+        String query = "SELECT courseCode FROM transcript WHERE username=" + userID;
+        List<String> result = (List<String>)emf.createEntityManager().createNativeQuery(query).getResultList();
+        return result;
+    }
+    
     public List<Note> userQuery(String keyword, String criteria){
         String query = "";
         String searchable="";
@@ -456,6 +463,14 @@ public class getNotedSessionBean {
     
     public String highestSlotAvailable() {
         String number = (String) emf.createEntityManager().createNativeQuery("SELECT CAST(MAX(CAST(userID AS SIGNED)) AS CHAR(20)) FROM User").getSingleResult();
+        int num = Integer.parseInt(number);
+        num++;
+        System.out.println(num);
+        return num + "";
+    }
+    
+    public String highestSlotAvailableNote() {
+        String number = (String) emf.createEntityManager().createNativeQuery("SELECT CAST(MAX(CAST(noteID AS SIGNED)) AS CHAR(20)) FROM NotePK").getSingleResult();
         int num = Integer.parseInt(number);
         num++;
         System.out.println(num);

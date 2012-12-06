@@ -21,6 +21,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Professor.findAll", query = "SELECT p FROM Professor p"),
     @NamedQuery(name = "Professor.findByProfessorID", query = "SELECT p FROM Professor p WHERE p.professorID = :professorID")})
 public class Professor implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "department")
+    private String department;
+    @JoinColumn(name = "professorID", referencedColumnName = "userID")
+    @OneToOne(optional = false)
+    private User user;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -28,9 +36,9 @@ public class Professor implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "professorID")
     private String professorID;
-    @JoinColumn(name = "department", referencedColumnName = "departmentID")
+    /*@JoinColumn(name = "department", referencedColumnName = "departmentID")
     @ManyToOne(optional = false)
-    private Department department;
+    private Department department;*/
 
     public Professor() {
     }
@@ -47,11 +55,11 @@ public class Professor implements Serializable {
         this.professorID = professorID;
     }
 
-    public Department getDepartment() {
+    public String getDepartment() {
         return department;
     }
-
-    public void setDepartment(Department department) {
+    
+    public void setDepartment(String department) {
         this.department = department;
     }
 
@@ -78,6 +86,14 @@ public class Professor implements Serializable {
     @Override
     public String toString() {
         return "entities.Professor[ professorID=" + professorID + " ]";
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
 }

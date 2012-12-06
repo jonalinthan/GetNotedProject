@@ -4,6 +4,7 @@
  */
 package servlets;
 
+import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,12 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/*
- * You have to import these.  Import the entities that are used for each servlet.
- * In this case, we are logging in, so we only have to check User.  So we import
- * User.  Additionally, import the other three because you need all three of them.
- */
-import entities.User;
+import entities.*;
+import java.io.*;
 import javax.servlet.RequestDispatcher;
 import sessionBean.getNotedSessionBean;
 import javax.ejb.EJB;
@@ -25,12 +22,8 @@ import javax.ejb.EJB;
  *
  * @author Jonathan
  */
-public class LoginServlet extends HttpServlet {
+public class GenerateCoursesServlet extends HttpServlet {
 
-    /*
-     * Don't forget this line.  Stick with it.  Don't rename it.
-     * This is injecting the bean into the servlet.
-     */
     @EJB getNotedSessionBean getNotedBean;
     
     /**
@@ -48,46 +41,21 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /*
-             * Here is where you generate logic for the page.  This is different
-             * for every single servlet.
-             */
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
             
-            User user = getNotedBean.checkUser(username, password);
+            User user = (User) request.getSession().getAttribute("user");
+            List<String> courseCodes = getNotedBean.getCoursesEnrolledAndTaken(user.getUserID());
             
-            if (user != null) {
-                request.getSession().setAttribute("user", user);
-                if (user.getUserType().equals("student")) {
-                    //request.getSession().setAttribute("student", getNotedBean.lookUpStudent(username));
-                    
-                    RequestDispatcher rd = request.getRequestDispatcher("studentPage.jsp");
-                    rd.forward(request, response);
-                }
-                else if (user.getUserType().equals("professor")) {
-                    //request.getSession().setAttribute("professor", getNotedBean.lookUpProfessor(username));
-                    
-                    RequestDispatcher rd = request.getRequestDispatcher("professorPage.jsp");
-                    rd.forward(request, response);
-                }
-                else {
-                    RequestDispatcher rd = request.getRequestDispatcher("loginFail.jsp");
-                    rd.forward(request, response);
-                }
-            }
-            else {
-                RequestDispatcher rd = request.getRequestDispatcher("loginFail.jsp");
-                rd.forward(request, response);
+            Course[] courses = new Course[courseCodes.size()];
+            for (int i = 0; i < courses.length; i++) {
+                courses[i] = getNotedBean.getCourse(courseCodes.get(i));
             }
             
-        } catch (Exception e) {
-            out.println("Error.");
-            out.println("<FORM><INPUT TYPE='button' VALUE='Back' onClick='history.go(-1);return true;'></FORM>");
-            out.println("<br/> "+e.toString());
-        }
-        
-        finally {            
+            request.getSession().setAttribute("coursesCurrentAndOld", courses);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("submitNote.jsp");
+            rd.forward(request, response);
+            
+        } finally {            
             out.close();
         }
     }
