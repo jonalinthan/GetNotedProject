@@ -414,4 +414,64 @@ public class getNotedSessionBean {
         List<Object[]> result = emf.createEntityManager().createNativeQuery(query).getResultList();
         return result;
     }
+    public User[] searchUserForRemoval(String criteria, String keyword) {
+        TypedQuery<User> query;
+        List<User> searchResults = null;
+        
+        if (!keyword.equals("null")) {
+            query = emf.createEntityManager().createQuery("SELECT u FROM User u WHERE u.firstName LIKE :keyword or u.lastName LIKE :keyword or u.username LIKE :keyword", User.class);
+            searchResults = query.setParameter("keyword", "%" + keyword + "%").getResultList();
+        }
+        else {
+            if (criteria.equalsIgnoreCase("professor")) {
+                query = emf.createEntityManager().createQuery("SELECT u FROM User u ORDER BY u.lastName", User.class);
+                searchResults = query.getResultList();
+            }
+            else if (criteria.equalsIgnoreCase("student")) {
+                query = emf.createEntityManager().createQuery("SELECT u FROM User u ORDER BY u.lastName", User.class);
+                searchResults = query.getResultList();
+            }
+        }
+        
+        System.out.println(searchResults.get(0).getFirstName());
+        return searchResults.toArray(new User[searchResults.size()]);
+    }
+    
+    public Note[] searchNoteForRemoval(String criteria, String keyword) {
+        return (new Note[2]);
+    }
+    
+    public void removeUser(String deleteID, String userType) {
+        Query query1 = emf.createEntityManager().createNativeQuery("DELETE FROM User WHERE userID='" + deleteID + "'");
+        Query query2 = null;
+        if (userType.equals("student")) {
+            query2 = emf.createEntityManager().createNativeQuery("DELETE FROM Student WHERE userID='" + deleteID + "'");
+        }
+        else if (userType.equals("professor")) {
+            query2 = emf.createEntityManager().createNativeQuery("DELETE FROM Professor WHERE professorID='" + deleteID +"'");
+        }
+        query1.executeUpdate();
+        query2.executeUpdate();
+    }
+    
+    public String highestSlotAvailable() {
+        String number = (String) emf.createEntityManager().createNativeQuery("SELECT CAST(MAX(CAST(userID AS SIGNED)) AS CHAR(20)) FROM User").getSingleResult();
+        int num = Integer.parseInt(number);
+        num++;
+        System.out.println(num);
+        return num + "";
+    }
+    
+    public void saveUser(User user) {
+        emf.createEntityManager().persist(user);
+    }
+    
+    public void saveStudent(Student student) {
+        emf.createEntityManager().persist(student);
+    }
+    
+    public void saveProfessor(Professor professor) {
+        emf.createEntityManager().persist(professor);
+    }
+
 }
