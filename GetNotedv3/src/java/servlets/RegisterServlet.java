@@ -88,6 +88,10 @@ public class RegisterServlet extends HttpServlet {
                 
                 getNotedBean.saveUser(user);
                 getNotedBean.saveStudent(student);
+                
+                request.getSession().setAttribute("user", user);
+                RequestDispatcher rd = request.getRequestDispatcher("studentPage.jsp");
+                rd.forward(request, response);
             }
             else if (userType.equals("professor")) {
                 departmentID = (String) request.getParameter("department");
@@ -114,8 +118,11 @@ public class RegisterServlet extends HttpServlet {
                 
                 getNotedBean.saveUser(user);
                 getNotedBean.saveProfessor(professor);
+                
+                request.getSession().setAttribute("user", user);
+                RequestDispatcher rd = request.getRequestDispatcher("professorPage.jsp");
+                rd.forward(request, response);
             }
-            
             
         } finally {            
             out.close();

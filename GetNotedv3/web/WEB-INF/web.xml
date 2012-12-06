@@ -60,19 +60,78 @@
         <servlet-name>SchoolNoBuddiesServlet</servlet-name>
         <servlet-class>servlets.SchoolNoBuddiesServlet</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>ListCourseProfessorIsTeachingServlet</servlet-name>
         <servlet-class>servlets.ListCourseProfessorIsTeachingServlet</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>RemoveUserSearchServlet</servlet-name>
+        <servlet-class>servlets.RemoveUserSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveUserServlet</servlet-name>
+        <servlet-class>servlets.RemoveUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddQuestionToBankServlet</servlet-name>
+        <servlet-class>servlets.AddQuestionToBankServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddQuestionToBank</servlet-name>
+        <servlet-class>servlets.AddQuestionToBank</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListQuestionBankServlet</servlet-name>
+        <servlet-class>servlets.ListQuestionBankServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddBuddySearchServlet</servlet-name>
+        <servlet-class>servlets.AddBuddySearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddUserSearchServlet</servlet-name>
+        <servlet-class>servlets.AddUserSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RedirectToAdd</servlet-name>
+        <servlet-class>servlets.RedirectToAdd</servlet-class>
+    </servlet>
+   <servlet>
+        <servlet-name>AddUserServlet</servlet-name>
+        <servlet-class>servlets.AddUserServlet</servlet-class>
+    </servlet>
+    
     
     
     
     <servlet-mapping>
+        <servlet-name>AddUserServlet</servlet-name>
+        <url-pattern>/AddUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListQuestionBankServlet</servlet-name>
+        <url-pattern>/ListQuestionBankServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddQuestionToBank</servlet-name>
+        <url-pattern>/AddQuestionToBank</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddQuestionToBankServlet</servlet-name>
+        <url-pattern>/AddQuestionToBankServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveUserServlet</servlet-name>
+        <url-pattern>/RemoveUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveUserSearchServlet</servlet-name>
+        <url-pattern>/RemoveUserSearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ListCourseProfessorIsTeachingServlet</servlet-name>
         <url-pattern>/ListCourseProfessorIsTeachingServlet</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>SchoolNoBuddiesServlet</servlet-name>
         <url-pattern>/SchoolNoBuddiesServlet</url-pattern>
@@ -133,9 +192,23 @@
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/SearchServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBuddySearchServlet</servlet-name>
+        <url-pattern>/AddBuddySearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddUserSearchServlet</servlet-name>
+        <url-pattern>/AddUserSearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RedirectToAdd</servlet-name>
+        <url-pattern>/RedirectToAdd</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-</web-app>
+    
+    
+    </web-app>

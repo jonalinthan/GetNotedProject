@@ -4,27 +4,24 @@
  */
 package servlets;
 
+import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import entities.User;
-import entities.Student;
-import entities.Professor;
-import javax.servlet.RequestDispatcher;
 import sessionBean.getNotedSessionBean;
-import javax.ejb.EJB;
 
 /**
  *
- * @author Jonathan
+ * @author quantumDrop
  */
-public class RemoveUserServlet extends HttpServlet {
+public class AddBuddySearchServlet extends HttpServlet {
 
-    @EJB getNotedSessionBean getNotedBean;
+        @EJB getNotedSessionBean getNotedBean;
     
     /**
      * Processes requests for both HTTP
@@ -41,14 +38,18 @@ public class RemoveUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+
             
-            String userID = request.getParameter("removeID");
-            String userType = getNotedBean.getUser(userID).getUserType();
+            String keyword = (String) request.getParameter("searchString");
+            String criteria = (String) request.getParameter("criteria");
             
-            getNotedBean.removeUser(userID, userType);
+            User[] user = getNotedBean.searchBuddyForAdd(criteria, keyword);
+            request.getSession().setAttribute("users4", user);
             
-            RequestDispatcher rd = request.getRequestDispatcher("adminPage.jsp");
-                rd.forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher("addUserSearch.jsp");
+            rd.forward(request, response);
+            
+            
         } finally {            
             out.close();
         }

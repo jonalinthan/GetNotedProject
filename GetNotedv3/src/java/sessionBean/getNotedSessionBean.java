@@ -488,5 +488,37 @@ public class getNotedSessionBean {
     public void saveProfessor(Professor professor) {
         emf.createEntityManager().persist(professor);
     }
+    public User[] searchBuddyForAdd(String criteria, String keyword) {
+        TypedQuery<User> query;
+        List<User> searchResults = null;
+        
+        if (!keyword.equals("null")) {
+            query = emf.createEntityManager().createQuery("SELECT u FROM User u WHERE u.firstName LIKE :keyword or u.lastName LIKE :keyword or u.username LIKE :keyword", User.class);
+            searchResults = query.setParameter("keyword", "%" + keyword + "%").getResultList();
+        }
+        else {
+            if (criteria.equalsIgnoreCase("professor")) {
+                query = emf.createEntityManager().createQuery("SELECT u FROM User u ORDER BY u.lastName", User.class);
+                searchResults = query.getResultList();
+            }
+            else if (criteria.equalsIgnoreCase("student")) {
+                query = emf.createEntityManager().createQuery("SELECT u FROM User u ORDER BY u.lastName", User.class);
+                searchResults = query.getResultList();
+            }
+        }
+        
+        System.out.println(searchResults.get(0).getFirstName());
+        return searchResults.toArray(new User[searchResults.size()]);
+    }
+    public void newBuddy(String userID, User currentUser){
+        User user = this.getUser(userID);
+        Buddies bud = new Buddies(new BuddiesPK(currentUser.getUserID(), user.getUserID()));
+        emf.createEntityManager().persist(user);
+    }
+    /*
+    public void addQuestion(String questionToAdd){
+        
+        emf.createEntityManager().persist(questionToAdd)
+    }*/
 
 }

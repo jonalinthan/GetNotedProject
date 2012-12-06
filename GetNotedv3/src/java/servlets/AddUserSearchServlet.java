@@ -4,28 +4,23 @@
  */
 package servlets;
 
+import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import entities.User;
-import entities.Student;
-import entities.Professor;
-import javax.servlet.RequestDispatcher;
 import sessionBean.getNotedSessionBean;
-import javax.ejb.EJB;
 
 /**
  *
- * @author Jonathan
+ * @author quantumDrop
  */
-public class RemoveUserServlet extends HttpServlet {
-
+public class AddUserSearchServlet extends HttpServlet {
     @EJB getNotedSessionBean getNotedBean;
-    
+
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -41,14 +36,11 @@ public class RemoveUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            
-            String userID = request.getParameter("removeID");
-            String userType = getNotedBean.getUser(userID).getUserType();
-            
-            getNotedBean.removeUser(userID, userType);
-            
-            RequestDispatcher rd = request.getRequestDispatcher("adminPage.jsp");
-                rd.forward(request, response);
+            String id= request.getParameter("AddID");
+            User current = (User)request.getSession().getAttribute("user");
+            getNotedBean.newBuddy(id, current);
+            /* TODO output your page here. You may use following sample code. */
+          
         } finally {            
             out.close();
         }

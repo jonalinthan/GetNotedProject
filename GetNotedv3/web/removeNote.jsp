@@ -20,6 +20,5 @@
                         <input type="text" name="searchString"/>
                         <input type="submit" value="Search" />
                     </form>
-
     </body>
 </html>

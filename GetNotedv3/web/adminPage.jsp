@@ -12,6 +12,7 @@
         <title>Administrator Page</title>
     </head>
     <body>
+        <h1> Administrator </h1><br>
         <a href="removeNote.jsp">Remove Note</a>
         <a href="removeUser.jsp">Remove User</a>
     </body>

@@ -32,5 +32,8 @@
          <form method="post" name="questionBanksettings" action="ListQuestionBankServlet" >
                     <input type="submit" value="List Question Bank Questions" />
         </form>
+        <form action="addQuestionToBank.jsp">
+                    <button type="submit">Add a question to the question bank</button><br>
+        </form>
     </body>
 </html>
