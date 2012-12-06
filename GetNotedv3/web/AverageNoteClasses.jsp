@@ -13,7 +13,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <c:forEach var="p" items="$(avgnotes)">
+        <h1>Average note: </h1>
+        <c:forEach var="p" items="${avgnotes}">
                <p> ${p}<br></p>
         </c:forEach>        
     </body>

@@ -28,6 +28,33 @@
         <servlet-name>SearchServlet</servlet-name>
         <servlet-class>servlets.SearchServlet</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>AvgNoteServlet</servlet-name>
+        <servlet-class>servlets.AvgNoteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DepartmentAverageServlet</servlet-name>
+        <servlet-class>servlets.DepartmentAverageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetNoteServlet</servlet-name>
+        <servlet-class>servlets.GetNoteServlet</servlet-class>
+    </servlet>
+    
+
+    <servlet-mapping>
+        <servlet-name>GetNoteServlet</servlet-name>
+        <url-pattern>/GetNoteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DepartmentAverageServlet</servlet-name>
+        <url-pattern>/DepartmentAverageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AvgNoteServlet</servlet-name>
+        <url-pattern>/AvgNoteServlet</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
